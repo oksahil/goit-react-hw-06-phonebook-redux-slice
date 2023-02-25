@@ -1,20 +1,25 @@
 import { useState, useEffect } from "react";
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
+import { useSelector, useDispatch } from "react-redux";
 
 import MyPhoneForm from "./MyPhoneForm/MyPhoneForm";
 import ContactsList from "./ContactsList/ContactsList";
 import MyPhoneFilter from "./MyPhoneFilter/MyPhoneFilter";
 
 import Message from "./../../shared/component/Message/Message";
+import { addContact, deleteContact } from "./../redux/actions";
 
 import css from "./myPhone.module.css";
 
 const MyPhone = () => {
-    const [phones, setPhones] = useState(() => {
-        const phones = JSON.parse(localStorage.getItem("my-phonebook"));
-        return phones ? phones : [];
-    });
+    // const [phones, setPhones] = useState(() => {
+    //     const phones = JSON.parse(localStorage.getItem("my-phonebook"));
+    //     return phones ? phones : [];
+    // });
+    const phones = useSelector(store => store.phones);
     const [filter, setFilter] = useState("");
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         localStorage.setItem("my-phonebook", JSON.stringify(phones));
@@ -29,25 +34,20 @@ const isDublicate = (name, number)=> {
     return Boolean(person)
     }  
 
-const addContact = ({name, number, home, work}) => {
+const onAddContact = ({name, number, home, work}) => {
         if (isDublicate(name, number)) {
             alert(`${name} is already ixist`);
             return false;
         }
-        setPhones(prevPhones => {
-            const newPhones = {
-                id: nanoid(),
-                name,
-                number,
-                home,
-                work,
-            }
-            return [newPhones, ...phones];
-        })
-        return true;
+        
+    const action = addContact({ name, number, home, work });
+    dispatch(action);
     }
 
-    const removeContact = (id) => { setPhones((prevPhones) => prevPhones.filter(phone => phone.id !== id)) };
+    const removeContact = (id) => {
+        const action = deleteContact(id);
+        dispatch(action);
+    };
 
     const handleFilter = ({ target }) => setFilter(target.value);
 
@@ -72,7 +72,7 @@ const filterContacts=() => {
                 <div className={css.wrapper}>
                     <div className={css.block}>
                         <h3 className={css.title}>PhoneBook</h3>
-                        <MyPhoneForm onSubmit={ addContact } />
+                        <MyPhoneForm onSubmit={onAddContact}/>
                     </div>
                     <div className={css.block}>
                         <h3 className={css.title}>Contacts</h3>
