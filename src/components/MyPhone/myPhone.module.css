@@ -1,0 +1,26 @@
+.title {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.titlePage {
+    font-size: 24px;
+    margin-top: 20px;
+    color:indigo;
+    text-align: center;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns:auto auto;
+    gap: 30px;
+    justify-content: center;
+}
+.block {
+    display: block;
+    background-color: grey;
+    padding: 25px;
+    gap: 10px;
+
+}
