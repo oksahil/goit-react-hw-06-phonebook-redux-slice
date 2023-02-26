@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-// import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from "react-redux";
 
 import MyPhoneForm from "./MyPhoneForm/MyPhoneForm";
@@ -15,13 +14,8 @@ import { getFilter } from "components/redux/filter/filter-selectors";
 import css from "./myPhone.module.css";
 
 const MyPhone = () => {
-    // const [phones, setPhones] = useState(() => {
-    //     const phones = JSON.parse(localStorage.getItem("my-phonebook"));
-    //     return phones ? phones : [];
-    // });
     const phonesFilter = useSelector(filterContacts);
     const allPhones = useSelector(getAllPhones);
-    // const [filter, setFilter] = useState("");
     const filter = useSelector(getFilter);
 
     const dispatch = useDispatch();
@@ -58,21 +52,6 @@ const onAddContact = ({name, number, home, work}) => {
         dispatch(setFilter(target.value));
     }
 
-// const filterContacts=() => {
-//     if (!filter) {
-//         return phones;
-//     }
-//     const normFilter = filter.toLowerCase();
-//     const result = phones.filter(({ name, number }) => {
-//         return (name.toLowerCase().includes(normFilter) || number.toLowerCase().includes(normFilter))
-//     })
-//     return result;
-//     }     
-
-   
-    
-    // const contacts = filterContacts();
-    // console.log(contacts);
     const isPerson = Boolean(phonesFilter.length);
         return (
             <div>
