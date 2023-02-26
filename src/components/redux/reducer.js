@@ -1,4 +1,4 @@
-import { ADD_PHONE, DELETE_PHONE } from "./types";
+import { ADD_PHONE, DELETE_PHONE, SET_FILTER } from "./types";
 
 const inititalState = {
     phones: [],
@@ -13,6 +13,8 @@ const reducer = (state = inititalState, action) => {
         case DELETE_PHONE:
             const delPhones = state.phones.filter(item => item.id !== action.payload);
             return { ...state, phones: delPhones };
+        case SET_FILTER:
+            return { ...state, filter: action.payload };
         default:
             return state;
     }

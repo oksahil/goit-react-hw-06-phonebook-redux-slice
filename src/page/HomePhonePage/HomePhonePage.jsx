@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
 
+import { getHomePhones } from "components/redux/selectors";
+
 const HomePhonePage = () => {
-    const phones = useSelector(store => {
-        const homePhones = store.phones.filter(({ home }) => home);
-        return homePhones; 
-        });
+    const phones = useSelector(getHomePhones);
 
 
 

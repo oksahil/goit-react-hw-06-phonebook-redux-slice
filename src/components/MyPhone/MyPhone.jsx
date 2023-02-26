@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 // import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from "react-redux";
 
@@ -7,7 +7,8 @@ import ContactsList from "./ContactsList/ContactsList";
 import MyPhoneFilter from "./MyPhoneFilter/MyPhoneFilter";
 
 import Message from "./../../shared/component/Message/Message";
-import { addContact, deleteContact } from "./../redux/actions";
+import { addContact, deleteContact, setFilter } from "./../redux/actions";
+import { getAllPhones, getFilter } from "components/redux/selectors";
 
 import css from "./myPhone.module.css";
 
@@ -16,8 +17,9 @@ const MyPhone = () => {
     //     const phones = JSON.parse(localStorage.getItem("my-phonebook"));
     //     return phones ? phones : [];
     // });
-    const phones = useSelector(store => store.phones);
-    const [filter, setFilter] = useState("");
+    const phones = useSelector(getAllPhones);
+    // const [filter, setFilter] = useState("");
+    const filter = useSelector(getFilter);
 
     const dispatch = useDispatch();
 
@@ -49,7 +51,9 @@ const onAddContact = ({name, number, home, work}) => {
         dispatch(action);
     };
 
-    const handleFilter = ({ target }) => setFilter(target.value);
+    const handleFilter = ({ target }) => {
+        dispatch(setFilter(target.value));
+    }
 
 const filterContacts=() => {
     if (!filter) {
@@ -63,8 +67,9 @@ const filterContacts=() => {
     }     
 
    
-
+    
     const contacts = filterContacts();
+    console.log(contacts);
     const isPerson = Boolean(contacts.length);
         return (
             <div>
