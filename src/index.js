@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store} from "./components/redux/store.js";
-// import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate } from "redux-persist/integration/react";
+
+import { store, persistor } from "./components/redux/store";
 
 import { App } from './App'
 
@@ -12,13 +13,11 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter basename="/goit-react-hw-06-phonebook">
-      
-        {/* <PersistGate loading={null} persistor={persistor}> */}
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter basename="/goit-react-hw-06-phonebook">
           <App />
-          {/* </PersistGate> */}
-        
-      </BrowserRouter>
-      </Provider>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import { getHomePhones } from "components/redux/selectors";
+import { getHomePhones } from "components/redux/phones/phones-selectors";
 
 const HomePhonePage = () => {
     const phones = useSelector(getHomePhones);

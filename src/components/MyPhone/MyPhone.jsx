@@ -7,8 +7,10 @@ import ContactsList from "./ContactsList/ContactsList";
 import MyPhoneFilter from "./MyPhoneFilter/MyPhoneFilter";
 
 import Message from "./../../shared/component/Message/Message";
-import { addContact, deleteContact, setFilter } from "./../redux/actions";
-import { getAllPhones, filterContacts, getFilter } from "components/redux/selectors";
+import { addContact, deleteContact } from "./../redux/phones/phones-slice";
+import { setFilter } from "./../redux/filter/filter-slice";
+import { getAllPhones, filterContacts } from "components/redux/phones/phones-selectors";
+import { getFilter } from "components/redux/filter/filter-selectors";
 
 import css from "./myPhone.module.css";
 

@@ -5,22 +5,23 @@ const phonesSlice = createSlice({
     name: "phones",
     initialState: [],
     reducers: {
-        addPhone: {
-            reducer: (state, {payload}) =>  {
-                state.push(payload);
-            },
+        addContact: {
+            reducer: (state, {payload}) => {
+                        state.push(payload);
+                    },
             prepare: data => {
-                return {
-                    payload: {
-                        id: nanoid(),
-                        ...data,
-                    }
-                }
+                        return {
+                            payload: {
+                                id: nanoid(),
+                                ...data,
+                                    }
+                                }
+                            }
+                    },
+            deleteContact: (state, { payload }) => state.filter(({id}) => id !== payload),
+
             }
-        },
-        deletePhone: (state, {payload}) => state.filter(({id}) => id !== payload),
-    }
 })
 
-export const {addPhone, deletePhone} = phonesSlice.actions;
+export const {addContact, deleteContact} = phonesSlice.actions;
 export default phonesSlice.reducer;

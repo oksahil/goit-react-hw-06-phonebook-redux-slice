@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import { getWorkPhones } from "components/redux/selectors";
+import { getWorkPhones } from "components/redux/phones/phones-selectors";
 
 const WorkPhonePage = () => {
     const phones = useSelector(getWorkPhones);
