@@ -8,7 +8,7 @@ import MyPhoneFilter from "./MyPhoneFilter/MyPhoneFilter";
 
 import Message from "./../../shared/component/Message/Message";
 import { addContact, deleteContact, setFilter } from "./../redux/actions";
-import { filterContacts, getFilter } from "components/redux/selectors";
+import { getAllPhones, filterContacts, getFilter } from "components/redux/selectors";
 
 import css from "./myPhone.module.css";
 
@@ -18,6 +18,7 @@ const MyPhone = () => {
     //     return phones ? phones : [];
     // });
     const phonesFilter = useSelector(filterContacts);
+    const allPhones = useSelector(getAllPhones);
     // const [filter, setFilter] = useState("");
     const filter = useSelector(getFilter);
 
@@ -30,7 +31,7 @@ const MyPhone = () => {
 const isDublicate = (name, number)=> {
     const normName = name.toLowerCase();
     const normNumber = number.toLowerCase();
-    const person = phonesFilter.find(({ name, number }) => {
+    const person = allPhones.find(({ name, number }) => {
         return (name.toLowerCase() === normName || number.toLowerCase() === normNumber)
     })
     return Boolean(person)
