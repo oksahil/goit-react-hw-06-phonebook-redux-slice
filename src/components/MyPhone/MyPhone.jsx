@@ -8,7 +8,7 @@ import MyPhoneFilter from "./MyPhoneFilter/MyPhoneFilter";
 
 import Message from "./../../shared/component/Message/Message";
 import { addContact, deleteContact, setFilter } from "./../redux/actions";
-import { getAllPhones, getFilter } from "components/redux/selectors";
+import { filterContacts, getFilter } from "components/redux/selectors";
 
 import css from "./myPhone.module.css";
 
@@ -17,20 +17,20 @@ const MyPhone = () => {
     //     const phones = JSON.parse(localStorage.getItem("my-phonebook"));
     //     return phones ? phones : [];
     // });
-    const phones = useSelector(getAllPhones);
+    const phonesFilter = useSelector(filterContacts);
     // const [filter, setFilter] = useState("");
     const filter = useSelector(getFilter);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        localStorage.setItem("my-phonebook", JSON.stringify(phones));
-    }, [phones]);   
+        localStorage.setItem("my-phonebook", JSON.stringify(phonesFilter));
+    }, [phonesFilter]);   
 
 const isDublicate = (name, number)=> {
     const normName = name.toLowerCase();
     const normNumber = number.toLowerCase();
-    const person = contacts.find(({ name, number }) => {
+    const person = phonesFilter.find(({ name, number }) => {
         return (name.toLowerCase() === normName || number.toLowerCase() === normNumber)
     })
     return Boolean(person)
@@ -55,22 +55,22 @@ const onAddContact = ({name, number, home, work}) => {
         dispatch(setFilter(target.value));
     }
 
-const filterContacts=() => {
-    if (!filter) {
-        return phones;
-    }
-    const normFilter = filter.toLowerCase();
-    const result = phones.filter(({ name, number }) => {
-        return (name.toLowerCase().includes(normFilter) || number.toLowerCase().includes(normFilter))
-    })
-    return result;
-    }     
+// const filterContacts=() => {
+//     if (!filter) {
+//         return phones;
+//     }
+//     const normFilter = filter.toLowerCase();
+//     const result = phones.filter(({ name, number }) => {
+//         return (name.toLowerCase().includes(normFilter) || number.toLowerCase().includes(normFilter))
+//     })
+//     return result;
+//     }     
 
    
     
-    const contacts = filterContacts();
-    console.log(contacts);
-    const isPerson = Boolean(contacts.length);
+    // const contacts = filterContacts();
+    // console.log(contacts);
+    const isPerson = Boolean(phonesFilter.length);
         return (
             <div>
                 <h2 className={css.titlePage}>Contacts of worcers of caffe Expresso</h2>
@@ -81,8 +81,8 @@ const filterContacts=() => {
                     </div>
                     <div className={css.block}>
                         <h3 className={css.title}>Contacts</h3>
-                        <MyPhoneFilter handleChange={handleFilter} /> 
-                        {isPerson && <ContactsList removeContact={removeContact} contacts={contacts}/>}
+                        <MyPhoneFilter value={filter} handleChange={handleFilter} /> 
+                        {isPerson && <ContactsList removeContact={removeContact} contacts={phonesFilter}/>}
                         {!isPerson && <Message message="No person in contacts list" />}
                             
                     </div>

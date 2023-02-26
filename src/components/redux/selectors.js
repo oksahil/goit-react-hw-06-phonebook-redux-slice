@@ -10,7 +10,7 @@ export const getWorkPhones = store => {
     return workPhones;
 };
 
-export const getFilteredPhones = ({ phones, filter }) => {
+export const filterContacts = ({ phones, filter }) => {
 if (!filter) {
         return phones;
     }
