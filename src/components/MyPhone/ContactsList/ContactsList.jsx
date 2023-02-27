@@ -1,10 +1,18 @@
-import PropTypes from "prop-types";
+import { useSelector, useDispatch} from "react-redux";
+
+import { filterContacts } from "./../../redux/phones/phones-selectors";
+import { deleteContact } from "components/redux/phones/phones-slice";
 
 import Button from "./../../../shared/component/Button/Button";
+import Message from "shared/component/Message/Message";
+
 
 import css from "./contactsList.module.css"
 
-const ContactsList = ({contacts, removeContact}) => {
+const ContactsList = () => {
+    const contacts = useSelector(filterContacts);
+    const dispatch = useDispatch();
+
     const phone = contacts.map(({ id, name, number, home, work }) =>
         <li key={id} className={css.textItem}>
         <div>    {home ?
@@ -19,9 +27,19 @@ const ContactsList = ({contacts, removeContact}) => {
                 <Button onClick={() => removeContact(id)} type="button">delete</Button>
                 </div>
         </li>);
+    
+        const removeContact = (id) => {
+        const action = deleteContact(id);
+        dispatch(action);
+    };
+    const phonesFilter = useSelector(filterContacts);
+    const isPerson = Boolean(phonesFilter.length);
     return (
         <ul className={css.listContact}>
-            {phone}
+                                 {isPerson && phone}
+                        {!isPerson && <Message message="No person in contacts list" />}
+
+           
         </ul>        
     )
 }
@@ -30,13 +48,4 @@ export default ContactsList;
 
 ContactsList.defaultPrors = {
     contacts: []
-}
-
-ContactsList.propTypes = {
-    removeContact: PropTypes.func.isRequired,
-    contacts: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name:  PropTypes.string.isRequired,
-        number:  PropTypes.string.isRequired,
-    }))
 }

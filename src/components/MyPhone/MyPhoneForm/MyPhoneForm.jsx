@@ -1,37 +1,45 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 
-
-// import useForm from "shared/hooks/useForm";
-import Button from "./../../../shared/component/Button/Button";
+import { getAllPhones } from "./../../redux/phones/phones-selectors";
+import { addContact } from "./../../redux/phones/phones-slice";
 import initialState from "./initialState";
+
+import Button from "./../../../shared/component/Button/Button";
 
 import css from "./myPhoneForm.module.css";
 
-const MyPhoneForm = ({ onSubmit }) => {
-    // const [state, handleChange, handleSubmit] = useForm({initialState, onSubmit });
+const MyPhoneForm = () => {
     const [state, setState] = useState({ ...initialState });
-    // const [contact, setContacts] = useState({ name: '', number: '' });
+    const allPhones = useSelector(getAllPhones);
+    const dispatch = useDispatch();
+    
+const isDublicate = (name, number)=> {
+    const normName = name.toLowerCase();
+    const normNumber = number.toLowerCase();
+    const person = allPhones.find(({ name, number }) => {
+        return (name.toLowerCase() === normName || number.toLowerCase() === normNumber)
+    })
+    return Boolean(person)
+    }  
 
 const handleChange = ({target}) => {
     const { name, value, type, checked } = target;
     const newValue = type === "checkbox" ? checked : value;
     setState(prevState => {
         return { ...prevState, [name]: newValue };
-       
     })
-    
 }
-
-const handleSubmit = (e) => {
+    
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
-    const resultSubmit = onSubmit(({...state}));
-        if(resultSubmit) {
-            setState({ ...initialState });
-           
-    }
-}
+    if (isDublicate(name, number)) {
+      return alert(`${name} or ${number} is already ixist`);
+    } else {
+      dispatch(addContact({ name, number, home, work }));
+      e.target.reset();
+    };
+  };    
 
 const { name, number, home, work } = state;
     
@@ -39,8 +47,7 @@ return (
          <form action="" onSubmit={handleSubmit} className={css.formData}>
             <div className={css.formInput}>
             <label className={css.labelText}>Name:</label>
-< ion-icon  name = "heart-outline" > </ ion-icon >
-                <input className={css.inputText}
+            <input className={css.inputText}
                     onChange={handleChange}
                     type="text"
                     name="name"
@@ -72,8 +79,7 @@ return (
                     name="home"
                     checked={home}
                     title="HomePhone"
-                    
-            />
+                />
             <label className={css.labelText}>Work:</label>
                 <input
                     onChange={handleChange}
@@ -81,7 +87,6 @@ return (
                     name="work"
                     checked={work}
                     title="WorkPhone"
-                    
                 />
             </div>
             <Button type="submit">Add contact</Button>
@@ -90,7 +95,3 @@ return (
 }
 
 export default MyPhoneForm;
-
-MyPhoneForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-}
