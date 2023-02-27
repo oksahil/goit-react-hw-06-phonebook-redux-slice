@@ -41,7 +41,6 @@ const onAddContact = ({name, number, home, work}) => {
 
     const action = addContact({ name, number, home, work });
     dispatch(action);
-    action.reset();
     }
 
     const removeContact = (id) => {
