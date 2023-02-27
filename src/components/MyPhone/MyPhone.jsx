@@ -35,12 +35,13 @@ const isDublicate = (name, number)=> {
 
 const onAddContact = ({name, number, home, work}) => {
         if (isDublicate(name, number)) {
-            alert(`${name} is already ixist`);
+            alert(`${name} or ${number} is already ixist`);
             return false;
-        }
-        
+    }
+
     const action = addContact({ name, number, home, work });
     dispatch(action);
+    action.reset();
     }
 
     const removeContact = (id) => {

@@ -8,17 +8,19 @@ import initialState from "./initialState";
 
 import css from "./myPhoneForm.module.css";
 
-
 const MyPhoneForm = ({ onSubmit }) => {
     // const [state, handleChange, handleSubmit] = useForm({initialState, onSubmit });
     const [state, setState] = useState({ ...initialState });
+    // const [contact, setContacts] = useState({ name: '', number: '' });
 
 const handleChange = ({target}) => {
     const { name, value, type, checked } = target;
     const newValue = type === "checkbox" ? checked : value;
     setState(prevState => {
         return { ...prevState, [name]: newValue };
+       
     })
+    
 }
 
 const handleSubmit = (e) => {
@@ -27,7 +29,8 @@ const handleSubmit = (e) => {
     const resultSubmit = onSubmit(({...state}));
         if(resultSubmit) {
             setState({ ...initialState });
-        }
+           
+    }
 }
 
 const { name, number, home, work } = state;
