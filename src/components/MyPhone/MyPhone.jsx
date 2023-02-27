@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import MyPhoneForm from "./MyPhoneForm/MyPhoneForm";
@@ -20,9 +20,9 @@ const MyPhone = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        localStorage.setItem("my-phonebook", JSON.stringify(phonesFilter));
-    }, [phonesFilter]);   
+    // useEffect(() => {
+    //     localStorage.setItem("my-phonebook", JSON.stringify(phonesFilter));
+    // }, [phonesFilter]);   
 
 const isDublicate = (name, number)=> {
     const normName = name.toLowerCase();
@@ -56,14 +56,18 @@ const onAddContact = ({name, number, home, work}) => {
         return (
             <div>
                 <h2 className={css.titlePage}>Contacts of worcers of caffe Expresso</h2>
+                <div className={css.blockFilter}>
+                    <MyPhoneFilter value={filter} handleChange={handleFilter} /> 
+                </div>
                 <div className={css.wrapper}>
                     <div className={css.block}>
                         <h3 className={css.title}>PhoneBook</h3>
                         <MyPhoneForm onSubmit={onAddContact}/>
                     </div>
-                    <div className={css.block}>
+
+                    <div className={css.blockContacts}>
                         <h3 className={css.title}>Contacts</h3>
-                        <MyPhoneFilter value={filter} handleChange={handleFilter} /> 
+                        
                         {isPerson && <ContactsList removeContact={removeContact} contacts={phonesFilter}/>}
                         {!isPerson && <Message message="No person in contacts list" />}
                             

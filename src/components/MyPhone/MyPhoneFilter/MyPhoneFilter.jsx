@@ -6,11 +6,12 @@ const MyPhoneFilter = ({ handleChange, filter }) => {
     return (
         <div className={css.formInput}>
             <label className={css.labelText}>Find contacts by name</label>
-            <input
+            <input className={css.inputText}
                 onChange={handleChange}
                 type="text"
                 name="filter"
                 value={filter}
+                
             />
         </div>
     )

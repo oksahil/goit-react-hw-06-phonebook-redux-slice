@@ -1,10 +1,37 @@
 .labelText {
     font-size: 16px;
-    color: #ffffff;
+    color: indigo;
     margin-right: 15px;
 }
 
 .formInput {
-    margin-bottom: 25px;
-    text-align: left;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.inputText {
+    border: 1px solid indigo;
+    /* filter: drop-shadow(10px 14px 4px rgba(0, 0, 0, 0.15)); */
+    border-radius: 5px;
+    /* background-color: transparent; */
+    padding-left: 5px;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: 0.03em;
+    color: gray;
+}
+
+.inputText:hover, .inputText:focus {
+    background-color: lavender;
+}
+.inputText:active {
+    background-color: lavender;
+    border: 1px solid indigo;
+}
+
+.inputText::placeholder {
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: 0.03em;
+    color: lightgrey;
 }

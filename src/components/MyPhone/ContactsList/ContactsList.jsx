@@ -5,13 +5,22 @@ import Button from "./../../../shared/component/Button/Button";
 import css from "./contactsList.module.css"
 
 const ContactsList = ({contacts, removeContact}) => {
-    const phone = contacts.map(({ id, name, number }) =>
+    const phone = contacts.map(({ id, name, number, home, work }) =>
         <li key={id} className={css.textItem}>
-            {name}       {number}
-            <Button onClick={() => removeContact(id)} type="button">delete</Button>
+        <div>    {home ?
+                <span className={css.textContact}><span className={css.pictH}>H</span> {name}    {number}</span> :
+                <span className={css.textContact}>{name} {number}</span> &&
+                    work ? 
+                <span className={css.textContact}><span className={css.pictW}>W</span> {name}    {number}</span> :
+                <span className={css.textContact}>{name} {number}</span>    
+            }
+            </div>
+            <div>
+                <Button onClick={() => removeContact(id)} type="button">delete</Button>
+                </div>
         </li>);
     return (
-        <ul>
+        <ul className={css.listContact}>
             {phone}
         </ul>        
     )

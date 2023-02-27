@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
+
 // import useForm from "shared/hooks/useForm";
 import Button from "./../../../shared/component/Button/Button";
 import initialState from "./initialState";
@@ -32,34 +33,37 @@ const handleSubmit = (e) => {
 const { name, number, home, work } = state;
     
 return (
-         <form action="" onSubmit={handleSubmit}>
+         <form action="" onSubmit={handleSubmit} className={css.formData}>
             <div className={css.formInput}>
-                <label className={css.labelText}>Name:</label>
-                <input
+            <label className={css.labelText}>Name:</label>
+< ion-icon  name = "heart-outline" > </ ion-icon >
+                <input className={css.inputText}
                     onChange={handleChange}
                     type="text"
                     name="name"
                     value={name}
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                     title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                    required
+                placeholder="Name Last name"    
+                required
                 />
             </div>
             <div className={css.formInput}>
                 <label className={css.labelText}>Number:</label>
-                <input
+                <input className={css.inputText}
                     onChange={handleChange}
                     type="tel"
                     name="number"
                     value={number}
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                    placeholder="+000-00-000-00-00"    
                     required
                 />
         </div>
         <div className={css.formInput}>
                 <label className={css.labelText}>Home:</label>
-                <input
+                <input  className={css.inputCheck}
                     onChange={handleChange}
                     type="checkbox"
                     name="home"
