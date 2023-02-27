@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/goit-react-hw-06-phonebook-redux-slice/static/css/main.761fd963.css",
-    "main.js": "/goit-react-hw-06-phonebook-redux-slice/static/js/main.2bead857.js",
+    "main.js": "/goit-react-hw-06-phonebook-redux-slice/static/js/main.013732bf.js",
     "static/css/706.da328e0d.chunk.css": "/goit-react-hw-06-phonebook-redux-slice/static/css/706.da328e0d.chunk.css",
-    "static/js/706.9ef92d59.chunk.js": "/goit-react-hw-06-phonebook-redux-slice/static/js/706.9ef92d59.chunk.js",
+    "static/js/706.194eb85d.chunk.js": "/goit-react-hw-06-phonebook-redux-slice/static/js/706.194eb85d.chunk.js",
     "static/css/454.54d1c162.chunk.css": "/goit-react-hw-06-phonebook-redux-slice/static/css/454.54d1c162.chunk.css",
     "static/js/454.87107430.chunk.js": "/goit-react-hw-06-phonebook-redux-slice/static/js/454.87107430.chunk.js",
     "static/css/169.fb6b0608.chunk.css": "/goit-react-hw-06-phonebook-redux-slice/static/css/169.fb6b0608.chunk.css",
     "static/js/169.32e7f437.chunk.js": "/goit-react-hw-06-phonebook-redux-slice/static/js/169.32e7f437.chunk.js",
     "index.html": "/goit-react-hw-06-phonebook-redux-slice/index.html",
     "main.761fd963.css.map": "/goit-react-hw-06-phonebook-redux-slice/static/css/main.761fd963.css.map",
-    "main.2bead857.js.map": "/goit-react-hw-06-phonebook-redux-slice/static/js/main.2bead857.js.map",
+    "main.013732bf.js.map": "/goit-react-hw-06-phonebook-redux-slice/static/js/main.013732bf.js.map",
     "706.da328e0d.chunk.css.map": "/goit-react-hw-06-phonebook-redux-slice/static/css/706.da328e0d.chunk.css.map",
-    "706.9ef92d59.chunk.js.map": "/goit-react-hw-06-phonebook-redux-slice/static/js/706.9ef92d59.chunk.js.map",
+    "706.194eb85d.chunk.js.map": "/goit-react-hw-06-phonebook-redux-slice/static/js/706.194eb85d.chunk.js.map",
     "454.54d1c162.chunk.css.map": "/goit-react-hw-06-phonebook-redux-slice/static/css/454.54d1c162.chunk.css.map",
     "454.87107430.chunk.js.map": "/goit-react-hw-06-phonebook-redux-slice/static/js/454.87107430.chunk.js.map",
     "169.fb6b0608.chunk.css.map": "/goit-react-hw-06-phonebook-redux-slice/static/css/169.fb6b0608.chunk.css.map",
@@ -20,6 +20,6 @@
   },
   "entrypoints": [
     "static/css/main.761fd963.css",
-    "static/js/main.2bead857.js"
+    "static/js/main.013732bf.js"
   ]
 }
