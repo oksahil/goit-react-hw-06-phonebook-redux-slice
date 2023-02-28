@@ -37,8 +37,9 @@ const handleChange = ({target}) => {
       return alert(`${name} or ${number} is already ixist`);
     } else {
       dispatch(addContact({ name, number, home, work }));
-      e.target.reset();
-    };
+      
+      };
+      setState(initialState);
   };    
 
 const { name, number, home, work } = state;
